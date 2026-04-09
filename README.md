@@ -52,6 +52,8 @@ Where $z_{t-L}$ is the leader's z-score lagged by $L = |k^*|$ minutes.
 
 ## Key Results
 
+![Lead-Lag Analysis](images/SPY_vs_QQQ_CCF_Plot.png)
+
 ```
 Optimal Lag:    0 min  |  ρ = 0.9850
 ρ(lag=-1):      0.0249
@@ -67,6 +69,10 @@ Out-of-Sample Sharpe:   -11.65
 ```
 
 ### Performance Summary
+
+![Lead-Lag Analysis](images/SPY_vs_QQQ_Vectorized_Backtest.png
+)
+
 
 ```
 Metric                        Lead-Lag      B&H SPY
@@ -84,11 +90,11 @@ A 2D heatmap maps annualized Sharpe ratio across all tested threshold ($\tau \in
 
 **Key findings**:
 
+![Lead-Lag Analysis](images/SPY_vs_QQQ_Heatmap.png)
+
 The heatmap reveals two meaningful patterns. First, a clear vertical gradient exists along the threshold axis: Sharpe improves consistently as $\tau$ increases, with the 0.5–0.75σ rows producing values as extreme as -32.36 while the 1.75–2.0σ rows remain in the -1 to +1 range. This partially validates the noise-filtering hypothesis — higher thresholds do suppress false signals — but not enough to produce a reliably profitable strategy.
 
 Second, lag 1 is the only column containing positive Sharpe values (notably 4.50 at 1.0σ, 4.29 at 1.25σ, and 0.55 at 2.0σ). By lag 2, every cell is negative regardless of threshold. The mid-range lags (5–7 minutes) are catastrophic across the entire threshold surface, confirming that the lead-lag signal — to the extent it exists — decays almost entirely within a single minute. This is consistent with the optimal lag of 0 and the contemporaneous correlation of 0.985: information propagation between SPY and QQQ is fully absorbed within one bar, and the `abs_lag = 1` used in the backtest represents the outermost boundary of any residual edge, not a statistically robust optimum.
-
-![Parameter Heatmap](outputs/parameter_heatmap.png)
 
 ## Limitations
 
