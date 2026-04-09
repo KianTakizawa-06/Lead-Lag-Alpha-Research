@@ -90,7 +90,7 @@ A 2D heatmap maps annualized Sharpe ratio across all tested threshold ($\tau \in
 
 **Key findings**:
 
-![Parameter Heatmap](outputs/SPY_vs_QQQ_Heatmap.png)
+![Lead-Lag Analysis](images/SPY_vs_QQQ_Heatmap.png)
 
 The heatmap reveals two meaningful patterns. First, a clear vertical gradient exists along the threshold axis: Sharpe improves consistently as $\tau$ increases, with the 0.5–0.75σ rows producing values as extreme as -32.36 while the 1.75–2.0σ rows remain in the -1 to +1 range. This partially validates the noise-filtering hypothesis — higher thresholds do suppress false signals — but not enough to produce a reliably profitable strategy.
 
