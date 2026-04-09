@@ -40,7 +40,9 @@ The optimal lag is defined as $k^* = \arg\max_k |\rho_k|$. Asymmetry between $\r
  
 A position is entered in the lagging instrument when the leader's z-score exceeds a threshold $\tau$:
  
-$$\text{signal}_t = \text{sgn}(z^{\text{leader}}_{t - |k^*|}) \cdot \bold{1}\left(|z^{\text{leader}}_{t - |k^*|}| > \tau\right)$$
+$$\text{signal}\_t = \text{sgn}(z\_{t-L}) \cdot \textbf{1}(|z\_{t-L}| > \tau)$$
+ 
+Where $z_{t-L}$ is the leader's z-score lagged by $L = |k^*|$ minutes.
 
 ### 4. Backtest
  
