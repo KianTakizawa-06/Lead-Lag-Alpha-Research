@@ -77,7 +77,16 @@ Max Drawdown                  -0.6634%     -1.9977%
 Win Rate                        36.11%       49.43%
 Total Trades                        35          N/A
 ```
+### Parameter Sensitivity Heatmap
  
+A 2D heatmap maps annualized Sharpe ratio across all tested threshold ($\tau \in [0.5\sigma, 2.0\sigma]$) and lag ($L \in [1, 10]$ minutes) combinations. This serves as the primary overfitting diagnostic for the study.
+ 
+**Key finding**: The heatmap reveals no contiguous region of positive Sharpe. Profitable cells are isolated and surrounded by negative or near-zero neighbors, confirming that no robust threshold/lag combination exists at this frequency. This is consistent with the optimal lag of 0 — the contemporaneous correlation of 0.985 indicates that information propagation between SPY and QQQ is fully absorbed within a single 1-minute bar, leaving no actionable delay for the strategy to exploit.
+ 
+The `abs_lag = 1` used in the backtest is a practical floor (the minimum tradeable lag), not a statistically identified optimum. The heatmap makes this limitation explicit: the strategy is forced to trade on a lag where the cross-correlation has already decayed to noise.
+ 
+![Parameter Heatmap](outputs/parameter_heatmap.png) 
+
 ## Limitations
  
 - **Sample size**: 2,730 observations (~7 trading days) is insufficient for robust parameter estimation. Minimum recommended: 3–6 months of 1-min data.
